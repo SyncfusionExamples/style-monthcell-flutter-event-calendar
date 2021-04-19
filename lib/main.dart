@@ -11,7 +11,7 @@ class MonthCellCustomization extends StatefulWidget {
 }
 
 class MonthCellCustomizationState extends State<MonthCellCustomization> {
-  Color _bgColor,_trailingDatesBGColor, _leadingDatesBGColor,_todayBGColor;
+  Color? _bgColor,_trailingDatesBGColor, _leadingDatesBGColor,_todayBGColor;
 
   @override
   void initState() {
@@ -28,22 +28,22 @@ class MonthCellCustomizationState extends State<MonthCellCustomization> {
         debugShowCheckedModeBanner: false,
         home: Scaffold(
             body: SafeArea(
-          child: SfCalendar(
-            view: CalendarView.month,
-            dataSource: _getDataSource(),
-            monthViewSettings: MonthViewSettings(
-                monthCellStyle: MonthCellStyle(
-                  todayBackgroundColor: _todayBGColor,
-                    backgroundColor: _bgColor,
-                    trailingDatesBackgroundColor: _trailingDatesBGColor,
-                    leadingDatesBackgroundColor: _leadingDatesBGColor)),
-            onViewChanged: calendarViewChanged,
-          ),
-        )));
+              child: SfCalendar(
+                view: CalendarView.month,
+                dataSource: _getDataSource(),
+                monthViewSettings: MonthViewSettings(
+                    monthCellStyle: MonthCellStyle(
+                        todayBackgroundColor: _todayBGColor,
+                        backgroundColor: _bgColor,
+                        trailingDatesBackgroundColor: _trailingDatesBGColor,
+                        leadingDatesBackgroundColor: _leadingDatesBGColor)),
+                onViewChanged: calendarViewChanged,
+              ),
+            )));
   }
 
   void calendarViewChanged(ViewChangedDetails viewChangedDetails) {
-    SchedulerBinding.instance.addPostFrameCallback((Duration duration) {
+    SchedulerBinding.instance!.addPostFrameCallback((Duration duration) {
       setState(() {
         var midDate = viewChangedDetails
             .visibleDates[viewChangedDetails.visibleDates.length ~/ 2];
